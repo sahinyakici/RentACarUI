@@ -1,0 +1,24 @@
+<div *ngIf="carLoaded==false" class="spinner-border text-success" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div *ngIf="carLoaded==true" class="alert alert-primary" role="alert">
+ Arabalar
+</div>
+<table *ngIf="carLoaded==true" class="table">
+  <thead>
+  <tr>
+    <th>Araba adı</th>
+    <th>Marka adı</th>
+    <th>Rengi</th>
+    <th>Günlük fiyatı</th>
+    <th>Resimleri</th>
+  </tr>
+  </thead>
+  <tr *ngFor="let car of cars">
+    <td>{{car.carName}}</td>
+    <td>{{car.brandName}}</td>
+    <td>{{car.colorName}}</td>
+    <td>{{car.dailyPrice}}</td>
+    <td>{{car.carImage}}</td>
+  </tr>
+</table>

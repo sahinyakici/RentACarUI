@@ -1,0 +1,18 @@
+<div *ngIf="brandLoaded==false" class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div *ngIf="brandLoaded==true" class="alert alert-secondary" role="alert">
+  Markalar
+</div>
+<table *ngIf="brandLoaded==true" class="table">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Isim</th>
+  </tr>
+  </thead>
+  <tr *ngFor="let brand of brands">
+    <td>{{brand.id}}</td>
+    <td>{{brand.name}}</td>
+  </tr>
+</table>

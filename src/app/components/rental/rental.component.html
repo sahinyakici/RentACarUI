@@ -1,0 +1,26 @@
+<div *ngIf="rentalLoaded==false" class="spinner-border text-danger" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div *ngIf="rentalLoaded==true" class="alert alert-info" role="alert">
+  Kiralamalar
+</div>
+<table *ngIf="rentalLoaded==true" class="table">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Marka adı</th>
+    <th>Müşteri</th>
+    <th>Kiralama zamanı</th>
+    <th>Teslim zamanı</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let rental of rentals">
+    <td>{{rental.id}}</td>
+    <td>{{rental.brandName}}</td>
+    <td>{{rental.customerFirstName + ' ' + rental.customerLastName}}</td>
+    <td>{{rental.rentDate}}</td>
+    <td>{{rental.returnDate}}</td>
+  </tr>
+  </tbody>
+</table>
