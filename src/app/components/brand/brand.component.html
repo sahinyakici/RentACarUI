@@ -4,15 +4,10 @@
 <div *ngIf="brandLoaded==true" class="alert alert-secondary" role="alert">
   Markalar
 </div>
-<table *ngIf="brandLoaded==true" class="table">
-  <thead>
-  <tr>
-    <th>Id</th>
-    <th>Isim</th>
-  </tr>
-  </thead>
-  <tr *ngFor="let brand of brands">
-    <td>{{brand.id}}</td>
-    <td>{{brand.name}}</td>
-  </tr>
-</table>
+
+<ul class="list-group" *ngIf="brandLoaded==true">
+  <li (click)="setCurrentBrand(brand)" routerLink="cars/brands/{{brand.id}}" *ngFor="let brand of brands"
+      [class]="getCurrentBrand(brand)">
+    {{brand.name}}
+  </li>
+</ul>

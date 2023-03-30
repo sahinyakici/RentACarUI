@@ -11,14 +11,12 @@
     <th>Marka adı</th>
     <th>Rengi</th>
     <th>Günlük fiyatı</th>
-    <th>Resimleri</th>
   </tr>
   </thead>
-  <tr *ngFor="let car of cars">
+  <tr (click)="getCarsWithDetails(car)"  *ngFor="let car of cars">
     <td>{{car.carName}}</td>
     <td>{{car.brandName}}</td>
     <td>{{car.colorName}}</td>
     <td>{{car.dailyPrice}}</td>
-    <td>{{car.carImage}}</td>
   </tr>
 </table>

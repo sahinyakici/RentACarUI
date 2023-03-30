@@ -4,15 +4,9 @@
 <div *ngIf="colorLoaded==true" class="alert alert-success" role="alert">
   Renkler
 </div>
-<table *ngIf="colorLoaded==true" class="table">
-  <thead>
-  <tr>
-    <th>Id</th>
-    <th>Isim</th>
-  </tr>
-  </thead>
-  <tr *ngFor="let color of colors">
-    <td>{{color.id}}</td>
-    <td>{{color.name}}</td>
-  </tr>
-</table>
+<ul class="list-group" *ngIf="colorLoaded==true">
+  <li (click)="setCurrentColor(color)" routerLink="cars/colors/{{color.id}}"
+      *ngFor="let color of colors" [class]="getCurrentColor(color)">
+    {{color.name}}
+  </li>
+</ul>
