@@ -2,7 +2,7 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 <div *ngIf="carLoaded==true" class="alert alert-primary" role="alert">
- Arabalar
+  Arabalar
 </div>
 <table *ngIf="carLoaded==true" class="table">
   <thead>
@@ -13,7 +13,7 @@
     <th>Günlük fiyatı</th>
   </tr>
   </thead>
-  <tr (click)="getCarsWithDetails(car)"  *ngFor="let car of cars">
+  <tr routerLink="/cars/detail/{{car.id}}" *ngFor="let car of cars">
     <td>{{car.carName}}</td>
     <td>{{car.brandName}}</td>
     <td>{{car.colorName}}</td>

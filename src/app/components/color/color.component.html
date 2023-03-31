@@ -5,6 +5,7 @@
   Renkler
 </div>
 <ul class="list-group" *ngIf="colorLoaded==true">
+  <li [class]="clearColorFilter(null)" (click)="setCurrentColor(null)"  routerLink="/">Renk filtresini temizle</li>
   <li (click)="setCurrentColor(color)" routerLink="cars/colors/{{color.id}}"
       *ngFor="let color of colors" [class]="getCurrentColor(color)">
     {{color.name}}

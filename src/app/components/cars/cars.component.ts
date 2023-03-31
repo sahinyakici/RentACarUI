@@ -47,8 +47,4 @@ export class CarsComponent implements OnInit {
       this.carLoaded = true;
     })
   }
-
-  getCarsWithDetails(car: Car) {
-
-  }
 }

@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Color} from "../../models/color";
 import {ColorService} from "../../services/color/color.service";
+import {BrandComponent} from "../brand/brand.component";
 
 @Component({
   selector: 'app-color',
@@ -8,9 +9,10 @@ import {ColorService} from "../../services/color/color.service";
   styleUrls: ['./color.component.css']
 })
 export class ColorComponent implements OnInit {
+  @ViewChild(BrandComponent) brandComponent: BrandComponent;
   colors: Color[] = [];
   colorLoaded: boolean = false;
-  currentColor: Color;
+  currentColor: Color | null;
 
   constructor(private colorService: ColorService) {
   }
@@ -26,12 +28,20 @@ export class ColorComponent implements OnInit {
     })
   }
 
-  setCurrentColor(color: Color) {
+  setCurrentColor(color: Color | null) {
     this.currentColor = color;
   }
 
   getCurrentColor(color: Color) {
     if (this.currentColor == color) {
+      return "list-group-item active"
+    } else {
+      return "list-group-item"
+    }
+  }
+
+  clearColorFilter(color: Color | null) {
+    if (!this.currentColor) {
       return "list-group-item active"
     } else {
       return "list-group-item"

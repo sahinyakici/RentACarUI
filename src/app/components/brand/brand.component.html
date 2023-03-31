@@ -6,6 +6,7 @@
 </div>
 
 <ul class="list-group" *ngIf="brandLoaded==true">
+  <li [class]="clearBrandFilter()" (click)="setCurrentBrand(null)"  routerLink="/">Marka filtresini temizle</li>
   <li (click)="setCurrentBrand(brand)" routerLink="cars/brands/{{brand.id}}" *ngFor="let brand of brands"
       [class]="getCurrentBrand(brand)">
     {{brand.name}}
