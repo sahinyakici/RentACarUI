@@ -1,0 +1,27 @@
+<form>
+  <ng-credit-card [name]="cardOwnerName" [number]="cardNumber" [cvc]="cardCvc"
+                  [expiry]="cardExpiration" [focused]="focused"></ng-credit-card>
+  <div class="mb-3">
+    <label for="cardNumber" class="form-label">Kart numarası</label>
+    <input type="text" class="form-control" id="cardNumber" (keyup)="checkCardNumber()" maxlength="16"
+           [(ngModel)]="cardNumber" name="cardNumber" (click)="changeFocused('number')">
+  </div>
+  <div class="mb-3">
+    <label for="cardOwnerName" class="form-label">Kart sahibi</label>
+    <input type="text" class="form-control" id="cardOwnerName" [(ngModel)]="cardOwnerName"
+           (keyup)="checkCardOwnerName()" name="cardOwnerName" (click)="changeFocused('name')">
+  </div>
+  <div class="mb-3">
+    <label for="date" class="form-label">Tarih (Ay/Yıl)</label>
+    <input type="text" class="form-control" id="date" name="date" [(ngModel)]="cardExpiration" (input)="checkexpiry()"
+           maxlength="4" (click)="changeFocused('expiry')">
+  </div>
+  <div class="mb-3">
+    <label for="cvc" class="form-label">CVC</label>
+    <input type="text" (keyup)="checkCardCvc()" class="form-control" id="cvc" maxlength="3" [(ngModel)]="cardCvc"
+           name="cardCvc"
+           (click)="changeFocused('cvc')">
+  </div>
+
+  <button type="submit" (click)="submit()" class="btn btn-primary">Ödemeyi tamamla</button>
+</form>

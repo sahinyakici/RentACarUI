@@ -4,10 +4,12 @@
 <div *ngIf="colorLoaded==true" class="alert alert-success" role="alert">
   Renkler
 </div>
-<ul class="list-group" *ngIf="colorLoaded==true">
-  <li [class]="clearColorFilter(null)" (click)="setCurrentColor(null)"  routerLink="/">Renk filtresini temizle</li>
-  <li (click)="setCurrentColor(color)" routerLink="cars/colors/{{color.id}}"
-      *ngFor="let color of colors" [class]="getCurrentColor(color)">
-    {{color.name}}
-  </li>
-</ul>
+<div class="mb-3">
+  <label for="colorSearch" class="form-label">Renk ara</label>
+  <input type="text" [(ngModel)]="filterText" class="form-control" id="colorSearch" placeholder="Renk adı giriniz">
+</div>
+<select class="form-select" *ngIf="colorLoaded==true" [(ngModel)]="currentColor" aria-label="Default select example"
+        routerLink="cars/colors/{{currentColor}}">
+  <option [ngValue]="null">Renk seçiniz</option>
+  <option *ngFor="let color of colors|filterColorPipe:filterText" [value]="color.id">{{color.name}}</option>
+</select>

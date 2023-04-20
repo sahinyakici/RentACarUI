@@ -4,19 +4,23 @@
 <div *ngIf="carLoaded==true" class="alert alert-primary" role="alert">
   Arabalar
 </div>
+<div class="mb-3">
+  <label for="carSearch" class="form-label">Arac ara</label>
+  <input type="text" [(ngModel)]="filterText" class="form-control" id="carSearch" placeholder="Arac adı giriniz">
+</div>
 <table *ngIf="carLoaded==true" class="table">
   <thead>
   <tr>
     <th>Araba adı</th>
     <th>Marka adı</th>
     <th>Rengi</th>
-    <th>Günlük fiyatı</th>
+    <th>Günlük fiyatı (KDV dahil)</th>
   </tr>
   </thead>
-  <tr routerLink="/cars/detail/{{car.id}}" *ngFor="let car of cars">
+  <tr routerLink="/cars/detail/{{car.id}}" *ngFor="let car of cars |filterCarPipe:filterText">
     <td>{{car.carName}}</td>
-    <td>{{car.brandName}}</td>
+    <td>{{car.brandName|uppercase}}</td>
     <td>{{car.colorName}}</td>
-    <td>{{car.dailyPrice}}</td>
+    <td>{{car.dailyPrice|vat:18|currency:"₺"}}</td>
   </tr>
 </table>

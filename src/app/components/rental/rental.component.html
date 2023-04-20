@@ -1,26 +1,18 @@
-<div *ngIf="rentalLoaded==false" class="spinner-border text-danger" role="status">
-  <span class="visually-hidden">Loading...</span>
+<div *ngFor="let cardetail of carDetails" style="width: 36rem;">
+  <app-carousel></app-carousel>
+  <div class="card-body row-cols-1">
+    <h6 class="card-title">{{cardetail.brandName}}</h6>
+    <p class="card-text">{{cardetail.description}}</p>
+    <p class="card-text">Fiyatı {{totalPrice|vat:18|currency:"₺"}}</p>
+    <div class="form-group">
+      <label for="pickupDate">Kiralama Tarihi:</label>
+      <input type="Date" class="form-control" id="pickupDate" [(ngModel)]="pickUpDate">
+    </div>
+    <div class="form-group">
+      <label for="returnDate">Teslim Tarihi:</label>
+      <input type="Date" class="form-control" id="returnDate" [(ngModel)]="returnDate" (ngModelChange)="checkReturnDate()">
+      <br>
+      <button type="button" (click)="checkValuesAndGetPay(cardetail.id)" class="btn btn-success">Ödeme aşamasına geç</button>
+    </div>
+  </div>
 </div>
-<div *ngIf="rentalLoaded==true" class="alert alert-info" role="alert">
-  Kiralamalar
-</div>
-<table *ngIf="rentalLoaded==true" class="table">
-  <thead>
-  <tr>
-    <th>Id</th>
-    <th>Marka adı</th>
-    <th>Müşteri</th>
-    <th>Kiralama zamanı</th>
-    <th>Teslim zamanı</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let rental of rentals">
-    <td>{{rental.id}}</td>
-    <td>{{rental.brandName}}</td>
-    <td>{{rental.customerFirstName + ' ' + rental.customerLastName}}</td>
-    <td>{{rental.rentDate}}</td>
-    <td>{{rental.returnDate}}</td>
-  </tr>
-  </tbody>
-</table>

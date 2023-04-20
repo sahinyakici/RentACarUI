@@ -4,11 +4,12 @@
 <div *ngIf="brandLoaded==true" class="alert alert-secondary" role="alert">
   Markalar
 </div>
-
-<ul class="list-group" *ngIf="brandLoaded==true">
-  <li [class]="clearBrandFilter()" (click)="setCurrentBrand(null)"  routerLink="/">Marka filtresini temizle</li>
-  <li (click)="setCurrentBrand(brand)" routerLink="cars/brands/{{brand.id}}" *ngFor="let brand of brands"
-      [class]="getCurrentBrand(brand)">
-    {{brand.name}}
-  </li>
-</ul>
+<div class="mb-3">
+  <label for="brandSearch" class="form-label">Marka ara</label>
+  <input type="text" [(ngModel)]="filterText" class="form-control" id="brandSearch" placeholder="Marka adı giriniz">
+</div>
+<select class="form-select" *ngIf="brandLoaded==true" [(ngModel)]="selectedBrand" aria-label="Default select example"
+        routerLink="cars/brands/{{selectedBrand}}">
+  <option [ngValue]="null">Marka seçiniz</option>
+  <option *ngFor="let brand of brands|filterBrandPipe:filterText" [value]="brand.id">{{brand.name}}</option>
+</select>

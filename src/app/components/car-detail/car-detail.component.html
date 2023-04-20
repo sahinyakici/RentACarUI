@@ -1,36 +1,18 @@
 <div *ngIf="carDetailLoaded==false" class="spinner-border text-primary" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
-<div *ngFor="let cardetail of carDetails" class="card" style="width: 48rem;">
-  <div *ngIf="images.length>0" id="carouselExample" class="carousel slide">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img [src]="loadImage()" class="d-block w-100" alt="{{cardetail.description}}">
-      </div>
-    </div>
-    <button *ngIf="images.length>1" class="carousel-control-prev" type="button" (click)="prevImage()"
-            data-bs-target="#carouselExample"
-            data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button *ngIf="images.length>1" class="carousel-control-next" type="button" (click)="nextImage()"
-            data-bs-target="#carouselExample"
-            data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
+<div *ngFor="let cardetail of carDetails" class="card" style="width: 36rem;">
+  <app-carousel></app-carousel>
   <div class="card-body">
     <h5 class="card-title">{{cardetail.brandName}}</h5>
     <p class="card-text">{{cardetail.description}}</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Kiralama fiyatı {{cardetail.dailyPrice}} ₺</li>
+    <li class="list-group-item">Kiralama fiyatı {{cardetail.dailyPrice|vat:18|currency:"₺"}} ₺</li>
     <li class="list-group-item">Arac rengi {{cardetail.colorName}}</li>
     <li class="list-group-item">Arac yılı {{cardetail.modelYear}}</li>
   </ul>
   <div class="card-body">
-    <a href="#" class="card-link">Kirala</a>
+    <button routerLink="/rental/{{cardetail.id}}" type="button" class="btn btn-success btn-lg">Kirala</button>
   </div>
 </div>

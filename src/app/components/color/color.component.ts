@@ -12,7 +12,8 @@ export class ColorComponent implements OnInit {
   @ViewChild(BrandComponent) brandComponent: BrandComponent;
   colors: Color[] = [];
   colorLoaded: boolean = false;
-  currentColor: Color | null;
+  currentColor: Color | null = null;
+  filterText: string = "";
 
   constructor(private colorService: ColorService) {
   }
@@ -26,25 +27,5 @@ export class ColorComponent implements OnInit {
       this.colors = response.data;
       this.colorLoaded = true;
     })
-  }
-
-  setCurrentColor(color: Color | null) {
-    this.currentColor = color;
-  }
-
-  getCurrentColor(color: Color) {
-    if (this.currentColor == color) {
-      return "list-group-item active"
-    } else {
-      return "list-group-item"
-    }
-  }
-
-  clearColorFilter(color: Color | null) {
-    if (!this.currentColor) {
-      return "list-group-item active"
-    } else {
-      return "list-group-item"
-    }
   }
 }

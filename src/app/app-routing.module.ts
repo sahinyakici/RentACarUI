@@ -4,9 +4,14 @@ import {CarsComponent} from "./components/cars/cars.component";
 import {CustomerComponent} from "./components/customer/customer.component";
 import {RentalComponent} from "./components/rental/rental.component";
 import {CarDetailComponent} from "./components/car-detail/car-detail.component";
+import {PaymentComponent} from "./components/payment/payment.component";
 
 const routes: Routes = [{path: "", pathMatch: "full", component: CarsComponent}, {
   path: "cars",
+  component: CarsComponent
+}, {path: "cars/brands", redirectTo: "", component: CarsComponent}, {
+  path: "cars/colors",
+  redirectTo: "",
   component: CarsComponent
 }, {
   path: "customers",
@@ -17,7 +22,7 @@ const routes: Routes = [{path: "", pathMatch: "full", component: CarsComponent},
 }, {path: "cars/colors/:colorId", component: CarsComponent}, {
   path: "cars/detail/:carId",
   component: CarDetailComponent
-}];
+}, {path: "rental/:carId", component: RentalComponent}, {path: "pay/:carId", component: PaymentComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

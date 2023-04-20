@@ -8,7 +8,17 @@ import {ColorComponent} from './components/color/color.component';
 import {CustomerComponent} from './components/customer/customer.component';
 import {CarsComponent} from './components/cars/cars.component';
 import {RentalComponent} from './components/rental/rental.component';
-import { CarDetailComponent } from './components/car-detail/car-detail.component';
+import {CarDetailComponent} from './components/car-detail/car-detail.component';
+import {FormsModule} from "@angular/forms";
+import {FilterCarPipePipe} from './pipes/filter-car-pipe.pipe';
+import {FilterBrandPipePipe} from './pipes/filter-brand-pipe.pipe';
+import {FilterColorPipePipe} from './pipes/filter-color-pipe.pipe';
+import {VatPipe} from './pipes/vat.pipe';
+import {CarouselComponent} from './components/carousel/carousel.component';
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { PaymentComponent } from './components/payment/payment.component';
+import {NgCreditCardModule} from "angular-credit-card";
 
 @NgModule({
   declarations: [
@@ -18,13 +28,25 @@ import { CarDetailComponent } from './components/car-detail/car-detail.component
     CustomerComponent,
     CarsComponent,
     RentalComponent,
-    CarDetailComponent
+    CarDetailComponent,
+    FilterCarPipePipe,
+    FilterBrandPipePipe,
+    FilterColorPipePipe,
+    VatPipe,
+    CarouselComponent,
+    PaymentComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot({
+            positionClass: "toast-bottom-right"
+        }),
+        NgCreditCardModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
